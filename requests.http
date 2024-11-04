@@ -1,0 +1,9 @@
+GET http://localhost:5201
+###
+POST http://localhost:5201/login
+content-type: application/json
+
+{
+  "email": "adm@teste.com",
+  "senha": "123456"
+}
