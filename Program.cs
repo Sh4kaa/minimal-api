@@ -6,6 +6,8 @@ using minimal_api.Infraestrutura.Db;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IAdministradorServico, AdministradorServico>();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DbContexto>(options =>
 {
   options.UseSqlServer(builder.Configuration.GetConnectionString("sqlserver"));
@@ -22,6 +24,6 @@ app.MapPost("/login", ([FromBody] LoginDTO loginDTO, IAdministradorServico admin
     return Results.Unauthorized();
 });
 
-
-
+app.UseSwagger();
+app.UseSwaggerUI();
 app.Run();
